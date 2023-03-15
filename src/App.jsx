@@ -9,54 +9,80 @@ function App() {
 
   return (
     <div className="container">
-      <form name="contact" method="POST" netlify data-netlify="true">
-        {/* <input type="hidden" name="form-name" value="contact" /> */}
-        <div className="basic_info">
-          <div className="input">
-            <label for="name">Name</label>
+      <form
+        name="contact"
+        action="/contact_sent"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <div className="grid grid-cols-2 gap-10">
+          <label className="block my-4 relative z-10">
+            <span className=" block text-xl my-2 text-primary font-bold capitalize">
+              Your name
+            </span>
             <input
-              type="text"
+              type="name"
               name="name"
-              id="name"
-              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="p-2 text-xl w-full rounded-md shadow-sm border-zinc border hover:shadow-md transition-all"
             />
-          </div>
-          <div className="input">
-            <label for="email">Email</label>
+          </label>
+
+          <label className="block my-4 relative z-10">
+            <span className=" block text-xl my-2 text-primary font-bold capitalize">
+              Your email
+            </span>
             <input
-              type="text"
+              type="email"
               name="email"
-              id="email"
-              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="p-2 text-xl w-full rounded-md shadow-sm border-zinc border hover:shadow-md transition-all"
             />
-          </div>
+          </label>
         </div>
-        <div className="input">
-          <label for="subject">Subject</label>
+
+        <label className="block my-4 relative z-10">
+          <span className=" block text-xl my-2 text-primary font-bold capitalize">
+            Your subject
+          </span>
           <input
-            type="text"
+            type="subject"
             name="subject"
-            id="subject"
-            placeholder="Subject"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
+            className="p-2 text-xl w-full rounded-md shadow-sm border-zinc border hover:shadow-md transition-all"
           />
-        </div>
-        <div className="input">
-          <label for="message">Message</label>
+        </label>
+
+        <label className="block my-2">
+          <span className="block text-xl my-2 text-primary font-bold">
+            Message
+          </span>
           <textarea
-            id="message"
-            name="message"
-            placeholder="Your Message"
             value={message}
+            name="message"
+            placeholder="What's on your mind..."
             onChange={(e) => setMessage(e.target.value)}
+            className="r w-[100%] text-xl p-2 resize-none min-h-[200px] rounded-md shadow-sm border-zinc border hover:shadow-md transition-all"
           ></textarea>
-        </div>
-        <button type="submit">Submit</button>
+        </label>
+
+        <button
+          disabled={!name || !email || !subject || !message}
+          className={`bg-primary text-white p-4 text-xl inline-block my-6
+              ${
+                !name || !email || !subject || !message
+                  ? "bg-zinc cursor-not-allowed"
+                  : ""
+              }
+              `}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
