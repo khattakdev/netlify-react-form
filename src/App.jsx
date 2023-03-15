@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="container">
       <form name="contact" method="POST" netlify data-netlify="true">
-        <input type="hidden" name="form-name" value="contact" />
+        {/* <input type="hidden" name="form-name" value="contact" /> */}
         <div className="basic_info">
           <div className="input">
             <label for="name">Name</label>
