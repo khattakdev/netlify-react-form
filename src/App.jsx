@@ -9,80 +9,54 @@ function App() {
 
   return (
     <div className="container">
-      <form
-        name="contact"
-        action="/contact_sent"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-      >
+      <form name="contact" method="POST">
         <input type="hidden" name="form-name" value="contact" />
-        <div className="grid grid-cols-2 gap-10">
-          <label className="block my-4 relative z-10">
-            <span className=" block text-xl my-2 text-primary font-bold capitalize">
-              Your name
-            </span>
+        <div className="basic_info">
+          <div className="input">
+            <label for="name">Name</label>
             <input
-              type="name"
+              type="text"
               name="name"
+              id="name"
+              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="p-2 text-xl w-full rounded-md shadow-sm border-zinc border hover:shadow-md transition-all"
             />
-          </label>
-
-          <label className="block my-4 relative z-10">
-            <span className=" block text-xl my-2 text-primary font-bold capitalize">
-              Your email
-            </span>
+          </div>
+          <div className="input">
+            <label for="email">Email</label>
             <input
-              type="email"
+              type="text"
               name="email"
+              id="email"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="p-2 text-xl w-full rounded-md shadow-sm border-zinc border hover:shadow-md transition-all"
             />
-          </label>
+          </div>
         </div>
-
-        <label className="block my-4 relative z-10">
-          <span className=" block text-xl my-2 text-primary font-bold capitalize">
-            Your subject
-          </span>
+        <div className="input">
+          <label for="subject">Subject</label>
           <input
-            type="subject"
+            type="text"
             name="subject"
+            id="subject"
+            placeholder="Subject"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            className="p-2 text-xl w-full rounded-md shadow-sm border-zinc border hover:shadow-md transition-all"
           />
-        </label>
-
-        <label className="block my-2">
-          <span className="block text-xl my-2 text-primary font-bold">
-            Message
-          </span>
+        </div>
+        <div className="input">
+          <label for="message">Message</label>
           <textarea
-            value={message}
+            id="message"
             name="message"
-            placeholder="What's on your mind..."
+            placeholder="Your Message"
+            value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="r w-[100%] text-xl p-2 resize-none min-h-[200px] rounded-md shadow-sm border-zinc border hover:shadow-md transition-all"
           ></textarea>
-        </label>
-
-        <button
-          disabled={!name || !email || !subject || !message}
-          className={`bg-primary text-white p-4 text-xl inline-block my-6
-              ${
-                !name || !email || !subject || !message
-                  ? "bg-zinc cursor-not-allowed"
-                  : ""
-              }
-              `}
-        >
-          Submit
-        </button>
+        </div>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
